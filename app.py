@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import cloudpickle
 import altair as alt
 import plotly.graph_objects as go
 import numpy as np
@@ -105,7 +105,12 @@ def load_model(path):
 
 # Load the data and model
 df = load_data('car-price_cleaned.csv')
-model = load_model('car_price_model.joblib')
+@st.cache_resource
+def load_model(path="best_car_price_model.pkl"):
+    with open(path, "rb") as f:
+        return cloudpickle.load(f)
+
+model = load_model()
 
 if df is None or model is None:
     st.stop()
