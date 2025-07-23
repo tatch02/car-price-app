@@ -106,10 +106,6 @@ def load_model(path="best_car_price_model.pkl"):
 
 # Load the data and model
 df = load_data('car-price_cleaned.csv')
-@st.cache_resource
-def load_model(path="best_car_price_model.pkl"):
-    with open(path, "rb") as f:
-        return cloudpickle.load(f)
 
 model = load_model()
 
