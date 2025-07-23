@@ -216,12 +216,16 @@ if page == "Seller Dashboard":
             st.markdown('</div>', unsafe_allow_html=True)
 
     if submit_button:
-        input_data = {
+input_data = {
             'Brand': brand, 'Model': model_car, 'Year': year, 'Engine_Size': engine_size,
             'Fuel_Type': fuel_type, 'Transmission': transmission, 'Mileage': mileage,
             'Doors': doors, 'Owner_Count': owner_count
         }
-        input_df = pd.DataFrame([input_data])
+expected_cols = ['Brand', 'Model', 'Year', 'Engine_Size', 'Fuel_Type', 
+                 'Transmission', 'Mileage', 'Doors', 'Owner_Count']
+
+input_df = pd.DataFrame([input_data])[expected_cols]
+
         predicted_price = model.predict(input_df)[0]
 
         max_value = predicted_price * 1.05
