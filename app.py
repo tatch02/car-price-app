@@ -96,7 +96,7 @@ def load_data(path):
 @st.cache_resource
 def load_model(path):
     """Loads the trained machine learning model from a joblib file."""
-     try:
+    try:
         with open(path, "rb") as f:
             model = cloudpickle.load(f)
         return model
