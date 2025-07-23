@@ -94,14 +94,14 @@ def load_data(path):
         return None
 
 @st.cache_resource
-def load_model(path):
-    """Loads the trained machine learning model from a joblib file."""
+def load_model(path="best_car_price_model.pkl"):
+    """Loads the ML pipeline saved with cloudpickle."""
     try:
         with open(path, "rb") as f:
             model = cloudpickle.load(f)
         return model
-    except FileNotFoundError:
-        st.error(f"❌ Error: The model file '{path}' was not found.")
+    except Exception as e:
+        st.error(f"❌ Error loading model: {e}")
         return None
 
 # Load the data and model
