@@ -96,11 +96,12 @@ def load_data(path):
 @st.cache_resource
 def load_model(path):
     """Loads the trained machine learning model from a joblib file."""
-    try:
-        model = joblib.load(path)
+     try:
+        with open(path, "rb") as f:
+            model = cloudpickle.load(f)
         return model
     except FileNotFoundError:
-        st.error(f"Error: The model file '{path}' was not found. Please run your notebook to save the model first.")
+        st.error(f"❌ Error: The model file '{path}' was not found.")
         return None
 
 # Load the data and model
