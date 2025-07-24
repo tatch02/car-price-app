@@ -94,7 +94,7 @@ def load_data(path):
         return None
 
 @st.cache_resource
-def load_model(path="car_price_model.pkl"):
+def load_model(path="best_car_price_model.pkl"):
     """Loads the ML pipeline saved with cloudpickle."""
     try:
         with open(path, "rb") as f:
